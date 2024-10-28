@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solution(int intRows)
+{
+    vector<vector<int>> ans;
+
+    for (int i = 0; i < intRows; i++)
+    {
+        vector<int> singleRow;
+        for (int j = 0; j <= i; j++)
+        {
+            if (j == 0 || j == i)
+            {
+                singleRow.push_back(1);
+            }
+            else
+            {
+                int selectedRow = j, selectedCol = j + 1;
+                int ansToAdd = ans[i - 1][j - 1] + ans[i - 1][j];
+
+                singleRow.push_back(ansToAdd);
+            }
+        }
+        ans.push_back(singleRow);
+    }
+
+    cout << endl
+         << ans.size() << endl;
+
+    for (int i = 0; i < intRows; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main()
+{
+    int n = 5;
+
+    cout << endl
+         << " ************** PROGRAM START **************" << endl;
+    solution(n);
+    cout << endl
+         << " ************** PROGRAM END   **************" << endl;
+}
