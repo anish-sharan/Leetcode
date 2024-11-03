@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+void solution(int n)
+{
+    string res(n - 1, 'a');
+    if (n % 2 == 0)
+    {
+        res += 'b';
+        cout << "EVEN :- " << n << " `" << res << "` " << endl;
+    }
+    else
+    {
+        res += 'a';
+        cout << "ODD :- " << n << " `" << res << "` " << endl;
+    }
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    nl;
+    solution(5);
+    solution(6);
+    solution(2);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
