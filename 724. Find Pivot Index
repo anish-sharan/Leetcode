@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+void print(vector<int> nums)
+{
+    for (auto it : nums)
+    {
+        cout << it << " ";
+    }
+    nl;
+}
+
+void solution(vector<int> nums)
+{
+    print(nums);
+
+    int sum = 0, leftSum = 0, rightSum = 0;
+
+    for (auto it : nums)
+        sum += it;
+
+    rightSum = sum;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+
+        if (leftSum == rightSum - nums[i])
+        {
+            cout << "res :- " << nums[i] << " " << i;
+            nl;
+        }
+
+        leftSum += nums[i];
+        rightSum -= nums[i];
+    }
+    cout << "res :- " << -1;
+    cout << "sum :- " << sum;
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    vector<int> nums = {1, 7, 3, 6, 5, 6};
+    nl;
+    solution(nums);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
