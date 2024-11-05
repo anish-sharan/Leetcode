@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+void print(vector<int> nums)
+{
+    for (auto it : nums)
+    {
+        cout << it << " ";
+    }
+    nl;
+}
+
+void solution(vector<int> nums)
+{
+    print(nums);
+    nl;
+
+    vector<int> res;
+    int check = nums.size() / 3;
+    map<int, int> mp;
+    for (auto it : nums)
+    {
+        mp[it]++;
+    }
+
+    for (auto it : mp)
+    {
+        if (it.second > check)
+            res.push_back(it.first);
+        cout << it.first << " " << it.second << endl;
+    }
+
+    print(res);
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    vector<int> nums = {3, 2, 3};
+    nl;
+    solution(nums);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
