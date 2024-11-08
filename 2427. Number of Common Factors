@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+void print(vector<int> nums)
+{
+    for (auto it : nums)
+    {
+        cout << it << " ";
+    }
+    nl;
+}
+
+void solution(int a, int b)
+{
+    cout << a << " " << b << endl;
+    int minLen = min(a, b), count = 0;
+
+    for (int i = 1; i <= minLen; i++)
+    {
+        if (a % i == 0 && b % i == 0)
+        {
+            count++;
+            cout << i << endl;
+        }
+    }
+    cout << "res " << count;
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    nl;
+    solution(12, 6);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
