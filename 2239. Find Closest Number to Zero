@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+template <typename T>
+void print(const T container)
+{
+    for (const auto &element : container)
+    {
+        cout << element << " ";
+    }
+    nl;
+}
+
+void solution(vector<int> nums)
+{
+    int min = INT_MAX;
+
+    sort(nums.begin(), nums.end());
+    for (auto it : nums)
+    {
+        if (abs(min) >= abs(it))
+        {
+            min = it;
+        }
+    }
+    cout << min;
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    vector<int> nums = {-4, -4};
+
+    nl;
+    solution(nums);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
