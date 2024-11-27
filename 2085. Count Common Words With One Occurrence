@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+template <typename T>
+void print(const T container)
+{
+    for (const auto &element : container)
+    {
+        cout << element << " ";
+    }
+    nl;
+}
+
+void solution(vector<string> words1, vector<string> words2)
+{
+    print(words1);
+    cout << endl;
+    print(words2);
+    cout << endl;
+
+    map<string, int> mp1, mp2;
+
+    for (auto it : words1)
+    {
+        mp1[it]++;
+    }
+
+    for (auto it : words2)
+    {
+        mp2[it]++;
+    }
+
+    int count = 0;
+    for (auto it : mp1)
+    {
+        if (it.second == mp2[it.first] && it.second == 1)
+        {
+            count++;
+        }
+        cout << it.first << " - " << it.second << " - " << mp2[it.first] << endl;
+    }
+
+    cout << "count: " << count;
+    cout << "**************\n";
+    for (auto it : mp2)
+    {
+        cout << it.first << " - " << it.second << endl;
+    }
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    vector<string> words1 = {"leetcode", "is", "amazing", "as", "is"}, words2 = {"amazing", "leetcode", "is"};
+
+    nl;
+    solution(words1, words2);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
