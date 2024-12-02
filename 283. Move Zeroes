@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+template <typename T>
+void print(const T container)
+{
+    for (const auto &element : container)
+    {
+        cout << element << " ";
+    }
+    nl;
+}
+
+void swap(vector<int> &list, int i, int j)
+{
+    int temp = list[i];
+    list[i] = list[j];
+    list[j] = temp;
+}
+void solution(vector<int> nums)
+{
+    print(nums);
+
+    int n = nums.size(), ptr2 = n;
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (nums[i] == 0)
+        {
+            cout << "starting " << i << endl;
+            for (int j = i + 1; j < ptr2; j++)
+            {
+                cout << "here " << nums[j] << endl;
+                swap(nums, j, j - 1);
+                cout << "Swaping" << nums[j] << " " << nums[j - 1] << endl;
+            }
+            ptr2--;
+        }
+    }
+    nl;
+    print(nums);
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    vector<int> nums = {0, 1, 0, 3, 12};
+
+    nl;
+    solution(nums);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
