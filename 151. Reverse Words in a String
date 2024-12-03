@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        stack<string> st;
+    string tempStr = "", res = "";
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s[i] >= 'a' && s[i] <= 'z' || s[i] >= 'A' && s[i] <= 'Z' || s[i] >= '0' && s[i] <= '9'  )
+        {
+            tempStr += s[i];
+        }
+        else if (s[i] == ' ' && !tempStr.empty() )
+        {
+            st.push(tempStr);
+            tempStr = "";
+        }
+    }
+
+    if (!tempStr.empty())
+    {
+        st.push(tempStr);
+    }
+
+    while (!st.empty())
+    {
+        res += st.top();
+         if (st.size() > 1)
+        {
+            res += " ";
+        }
+        st.pop();
+    }
+
+    return res;
+    }
+};
