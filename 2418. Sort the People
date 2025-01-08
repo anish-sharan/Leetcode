@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+#define nl cout << "\n";
+using namespace std;
+
+template <typename T>
+void print(const T container)
+{
+    for (const auto &element : container)
+    {
+        cout << element << " ";
+    }
+    nl;
+}
+
+template <typename T>
+void printMap(const T container)
+{
+    for (auto it : container)
+    {
+        cout << it.first << " " << it.second;
+        nl;
+    }
+}
+
+void solution(vector<string> names, vector<int> heights)
+{
+    print(names);
+    print(heights);
+
+    map<int, string> mp;
+    vector<string> res;
+    for (int i = 0; i < names.size(); i++)
+    {
+        mp[heights[i]] = names[i];
+    }
+
+    for (auto it : mp)
+    {
+        cout << it.first << " " << it.second << endl;
+    }
+
+    sort(heights.begin(), heights.end(), greater<int>());
+
+    for (auto it : heights)
+    {
+        res.push_back(mp[it]);
+    }
+
+    print(res);
+}
+
+int main()
+{
+    cout << " ************** PROGRAM START **************" << endl;
+
+    vector<string> names = {"Mary", "John", "Emma"};
+    vector<int> heights = {180, 165, 170};
+
+    solution(names, heights);
+    nl;
+
+    cout << " ************** PROGRAM END   **************" << endl;
+}
