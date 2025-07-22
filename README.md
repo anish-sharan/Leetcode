@@ -11,7 +11,7 @@ This project serves as:
 
 Each problem solution includes:
 - Clear and readable code
-- Descriptive file naming: `<problem_number>. <problem_title>.cpp`
+- Descriptive file naming: `<problem_number>. <problem_title>`
 - Git commits annotated with problem details (e.g., problem title, creation/update date)
 
 ## 💻 Languages Used
