@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        set<char> st;
+        map<char, char> mp;
+        char ch = 'a';
+        string res;
+
+        for (int i = 0; i < key.length(); i++) {
+            if (st.find(key[i]) == st.end() && key[i] != ' ') {
+                st.insert(key[i]);
+                mp[key[i]] = ch++;
+            }
+        }
+        for (auto it : message) {
+            if (it == ' ') {
+                res += ' ';
+            } else {
+
+                res += mp[it];
+            }
+        }
+        return res;
+    }
+};
