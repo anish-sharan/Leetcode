@@ -1,0 +1,26 @@
+class Solution {
+public:
+    set<string> getAllChars(string s) {
+        set<string> st;
+        for (int i = 0; i < s.length() - 1; i++) {
+            string temp = "";
+            temp += s[i];
+            temp += s[i + 1];
+            st.insert(temp);
+        }
+        return st;
+    }
+    bool isSubstringPresent(string s) {
+        if (s.length() == 1)
+            return false;
+        set<string> st = getAllChars(s);
+        reverse(s.begin(), s.end());
+        set<string> revSt = getAllChars(s);
+        for (auto it : st) {
+            if (revSt.find(it) != revSt.end()) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
