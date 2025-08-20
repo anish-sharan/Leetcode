@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> multi, multiRev, res;
+        int mul = 1, mul1 = 1;
+
+        for (int i = 0; i < nums.size(); i++) {
+            mul *= nums[i];
+            multi.push_back(mul);
+        }
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            mul1 *= nums[i];
+            multiRev.push_back(mul1);
+        }
+
+        reverse(multiRev.begin(), multiRev.end());
+
+        for (int i = 0; i < multi.size(); i++) {
+            if (i == 0) {
+                res.push_back(multiRev[1]);
+            } else if (i == multi.size() - 1) {
+                res.push_back(multi[multiRev.size() - 2]);
+            } else {
+                res.push_back(multi[i - 1] * multiRev[i + 1]);
+            }
+        }
+        return res;
+    }
+};
