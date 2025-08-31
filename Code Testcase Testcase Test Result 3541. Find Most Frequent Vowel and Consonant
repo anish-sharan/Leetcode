@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int getMax(map<char, int> m) {
+        int max = 0;
+        for (auto it : m) {
+            if (it.second > max) {
+                max = it.second;
+            }
+        }
+        return max;
+    }
+
+    int maxFreqSum(string s) {
+        map<char, int> vowel, con;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' ||
+                s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' ||
+                s[i] == 'O' || s[i] == 'U') {
+                vowel[s[i]]++;
+            } else {
+                con[s[i]]++;
+            }
+        }
+
+        int maxVowel = getMax(vowel);
+        int maxCon = getMax(con);
+
+        return maxVowel + maxCon;
+    }
+};
