@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> flatten(vector<int> arr, vector<int> toAdd) {
+        for (auto it : toAdd) {
+            arr.push_back(it);
+        }
+        return arr;
+    }
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        map<int, int> mp;
+        vector<vector<int>> freqMap(nums.size() + 1);
+        vector<int> ans;
+        int count = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+            mp[nums[i]]++;
+        }
+
+        for (auto it : mp) {
+            freqMap[it.second].push_back(it.first);
+        }
+
+        for (int i = freqMap.size() - 1; i >= 0; i--) {
+            if (count == k) {
+                break;
+            }
+
+            if (freqMap[i].size() != 0) {
+                ans = flatten(ans, freqMap[i]);
+                count += freqMap[i].size();
+            }
+        }
+        return ans;
+    }
+};
