@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isOperator(string s) {
+        return s == "+" || s == "-" || s == "*" || s == "/";
+    }
+
+    int calculate(int a, int b, string op) {
+        cout << a << " " << b << " " << op << endl;
+        if (op == "+")
+            return a + b;
+        if (op == "-")
+            return a - b;
+        if (op == "*")
+            return a * b;
+        return a / b;
+    }
+
+    int evalRPN(vector<string>& tokens) {
+        if(tokens.size() == 1) return stoi(tokens[0]);
+
+        stack<int> st;
+        int res = 0;
+
+        for (int i = 0; i < tokens.size(); i++) {
+            if (isOperator(tokens[i])) {
+                int a = st.top();
+                st.pop();
+                int b = st.top();
+                st.pop();
+                res = calculate(b, a, tokens[i]);
+                st.push(res);
+            } else {
+                st.push(stoi(tokens[i]));
+            }
+        }
+
+        return res;
+    }
+};
