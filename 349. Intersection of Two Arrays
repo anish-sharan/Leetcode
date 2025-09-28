@@ -19,3 +19,17 @@ public:
         return ans;
     }
 };
+
+
+-- Python --
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        a = set(nums1)
+
+        res = set()
+
+        for it in nums2:
+            if it in a:
+                res.add(it)
+
+        return list(res)
