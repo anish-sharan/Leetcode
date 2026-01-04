@@ -1,0 +1,45 @@
+class Solution {
+public:
+    map<string, int> getFreq(string s) {
+        map<string, int> freq;
+        string str;
+
+        for (char ch : s) {
+            if (isalpha(ch)) {
+                str += tolower(ch);
+            } else {
+                if (!str.empty()) {
+                    freq[str]++;
+                    str.clear();
+                }
+            }
+        }
+
+        // last word
+        if (!str.empty())
+            freq[str]++;
+
+        return freq;
+    }
+
+    string getHighest(map<string, int> mp, vector<string> banned) {
+        unordered_set<string> bannedSet(banned.begin(), banned.end());
+
+        string ans;
+        int mx = 0;
+
+        for (auto& it : mp) {
+            if (bannedSet.count(it.first) == 0 && it.second > mx) {
+                ans = it.first;
+                mx = it.second;
+            }
+        }
+
+        return ans;
+    }
+
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        map<string, int> freq = getFreq(paragraph);
+        return getHighest(freq, banned);
+    }
+};
