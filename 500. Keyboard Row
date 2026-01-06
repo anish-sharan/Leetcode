@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int rowNumber(char a) {
+        set<char> firstRow = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
+                              'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'};
+        set<char> secondRow = {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
+                               'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'};
+        set<char> thirdRow = {'z', 'x', 'c', 'v', 'b', 'n', 'm',
+                              'Z', 'X', 'C', 'V', 'B', 'N', 'M'};
+
+        if (firstRow.find(a) != firstRow.end()) {
+            return 1;
+        } else if (secondRow.find(a) != secondRow.end()) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
+    bool isSameRow(string s) {
+        int rowNum = rowNumber(s[0]);
+        for (int i = 1; i < s.length(); i++) {
+            if (rowNumber(s[i]) != rowNum) {
+                return false;
+            }
+        }
+        return true;
+    }
+    vector<string> findWords(vector<string>& words) {
+        vector<string> res;
+        for (auto word : words) {
+            if (isSameRow(word)) {
+                res.push_back(word);
+            }
+        }
+        return res;
+    }
+};
