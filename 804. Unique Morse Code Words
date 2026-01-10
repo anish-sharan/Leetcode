@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string getMorseCode(string word, map<char, string> morseCode) {
+        string morse = "";
+        for (char c : word) {
+            morse += morseCode[c];
+        }
+        return morse;
+    }
+    int uniqueMorseRepresentations(vector<string>& words) {
+        map<char, string> morseCode = {
+            {'a', ".-"},   {'b', "-..."}, {'c', "-.-."}, {'d', "-.."},
+            {'e', "."},    {'f', "..-."}, {'g', "--."},  {'h', "...."},
+            {'i', ".."},   {'j', ".---"}, {'k', "-.-"},  {'l', ".-.."},
+            {'m', "--"},   {'n', "-."},   {'o', "---"},  {'p', ".--."},
+            {'q', "--.-"}, {'r', ".-."},  {'s', "..."},  {'t', "-"},
+            {'u', "..-"},  {'v', "...-"}, {'w', ".--"},  {'x', "-..-"},
+            {'y', "-.--"}, {'z', "--.."}};
+        map<string, int> morseCount;
+
+        for (auto it : words) {
+            string morse = getMorseCode(it, morseCode);
+            morseCount[morse]++;
+        }
+
+        return morseCount.size();
+    }
+};
