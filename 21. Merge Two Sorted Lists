@@ -1,0 +1,73 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int getLLLength(ListNode* head) {
+        int count = 0;
+        while (head != nullptr) {
+            count++;
+            head = head->next;
+        }
+        return count;
+    }
+
+    int max(int a, int b) { return a > b ? a : b; }
+
+    ListNode* addNode(ListNode* head, int x) {
+        ListNode* t = head;
+        while (t->next != nullptr) {
+            t = t->next;
+        }
+
+        ListNode* temp = new ListNode(x);
+        t->next = temp;
+
+        return head;
+    }
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        int len1 = getLLLength(list1), len2 = getLLLength(list2);
+        ListNode *biggerList, *smallerList, *res = new ListNode(0);
+
+        if (len1 > len2) {
+            biggerList = list1;
+            smallerList = list2;
+        }
+
+        else {
+            biggerList = list2;
+            smallerList = list1;
+        }
+
+        while (biggerList != nullptr && smallerList != nullptr) {
+            int a = biggerList->val, b = smallerList->val;
+            if (a < b) {
+                addNode(res, a);
+                biggerList = biggerList->next;
+            } else {
+                addNode(res, b);
+                smallerList = smallerList->next;
+            }
+        }
+
+        while (biggerList != nullptr) {
+            addNode(res, biggerList->val);
+            biggerList = biggerList->next;
+        }
+
+        while (smallerList != nullptr) {
+            addNode(res, smallerList->val);
+            smallerList = smallerList->next;
+        }
+
+        return res->next;
+    }
+};
