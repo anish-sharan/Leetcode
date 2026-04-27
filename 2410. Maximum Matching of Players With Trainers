@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
+        sort(trainers.begin(), trainers.end());
+        sort(players.begin(), players.end());
+
+        int count = 0, n = trainers.size(), pointer = 0;
+
+        for (int i = 0; i < players.size() && pointer < n; i++) {
+            while (pointer < n && trainers[pointer] < players[i]) {
+                pointer++;
+            }
+
+            if (pointer < n) {
+                count++;
+                 
+                pointer++; 
+            }
+        }
+
+        return count;
+    }
+};
