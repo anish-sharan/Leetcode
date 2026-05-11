@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void addNums(vector<int>& ans, int num) {
+        cout << num << endl;
+
+        int sum = 0;
+        vector<int> t;
+        while (num > 0) {
+            sum = num % 10;
+            t.push_back(sum);
+            num /= 10;
+        }
+        reverse(t.begin(), t.end());
+        ans.insert(ans.end(), t.begin(), t.end());
+    }
+    vector<int> separateDigits(vector<int>& nums) {
+        vector<int> ans;
+
+        for (auto it : nums) {
+            addNums(ans, it);
+        }
+
+        return ans;
+    }
+};
