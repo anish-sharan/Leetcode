@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int max(int a, int b) { return a > b ? a : b; }
+    int longestOnes(vector<int>& nums, int k) {
+        int left = 0;
+        vector<int> v;
+        int zero = 0;
+        int maxi = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 0)
+                zero++;
+
+            v.push_back(nums[i]);
+
+            while (zero > k) {
+                left++;
+                if (v[0] == 0) {
+                    zero--;
+                }
+
+                v.erase(v.begin());
+            }
+
+            maxi = max(maxi, v.size());
+        }
+
+        return maxi;
+    }
+};
