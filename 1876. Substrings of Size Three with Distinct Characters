@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool check(string s) {
+        set<char> se(s.begin(), s.end());
+        return se.size() == 3;
+    }
+
+    int countGoodSubstrings(string s) {
+        if(s.length()<3)
+        return 0;
+
+        string window;
+        int count = 0;
+
+        for (int i = 0; i < 3; i++) {
+            window += s[i];
+        }
+
+        if (check(window)) {
+            count++;
+        }
+        for (int i = 1; i < s.length() - 2; i++) {
+
+            window = window.substr(1, window.size()) + s[i + 2];
+            if (check(window)) {
+                count++;
+            }
+        }
+        return count;
+    }
+};
