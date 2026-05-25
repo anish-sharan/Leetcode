@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string s1, string s2) {
+        map<string, int> mp;
+        string temp = "";
+        vector<string> res;
+
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1[i] == ' ' || i == s1.length() - 1) {
+                
+                if(s1[i] != ' ')
+                temp += s1[i];
+                mp[temp]++;
+                temp = "";
+                continue;
+            }
+
+            temp += s1[i];
+        }
+        for (int i = 0; i < s2.length(); i++) {
+            if (s2[i] == ' ' || i == s2.length() - 1) {
+                if(s2[i] != ' ')
+                temp += s2[i];
+                mp[temp]++;
+                temp = "";
+                continue;
+            }
+
+            temp += s2[i];
+        }
+
+        for(auto it:mp)
+        {
+            if(it.second ==1)
+            res.push_back(it.first);
+        }
+
+        return res;
+    }
+};
