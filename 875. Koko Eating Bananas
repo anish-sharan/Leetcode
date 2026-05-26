@@ -1,0 +1,27 @@
+class Solution {
+public:
+    long long check(vector<int> v, int value, int h) {
+        long long count = 0;
+        for (auto it : v) {
+            count += ceil(double(it) / value);
+        }
+
+        return count;
+    }
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int r = *max_element(piles.begin(), piles.end());
+        int l = 1, mid, res;
+
+        while (l <= r) {
+            mid = (l + r) / 2;
+            long long k = check(piles, mid, h);
+            if (k <= h) {
+                res = mid;
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return res;
+    }
+};
