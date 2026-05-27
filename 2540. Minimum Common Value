@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int getCommon(vector<int>& nums1, vector<int>& nums2) {
+        map<int, long long> mp, mp1;
+        for (auto it : nums1) {
+            mp[it]++;
+        }
+
+        for (auto it : nums2) {
+            mp1[it]++;
+        }
+
+        for (auto it : nums1) {
+            if (mp[it] > 0 && mp1[it] > 0) {
+                return it;
+            }
+        }
+
+        return -1;
+    }
+};
