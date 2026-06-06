@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int calculateDis(int x, int y) { return x*x + y*y; }
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+
+        priority_queue<pair<int, int>> pq;
+
+        for (int i = 0; i < points.size(); i++) {
+            pq.push({calculateDis(points[i][0], points[i][1]), i});
+
+            if (pq.size() > k) {
+                pq.pop();
+            }
+        }
+
+        vector<vector<int>> ans;
+
+        while (!pq.empty()) {
+            int idx = pq.top().second;
+
+            ans.push_back({points[idx][0], points[idx][1]});
+
+            pq.pop();
+        }
+        return ans;
+    }
+};
