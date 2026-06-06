@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> leftRightDifference(vector<int>& nums) {
+        int lSUM = 0, rSUM = 0;
+        vector<int> lSum = {0}, rSum = {0}, res;
+        for (int i = 0; i < nums.size() - 1; i++) {
+            lSum.push_back(lSUM + nums[i]);
+            lSUM += nums[i];
+        }
+
+        for (int i = nums.size() - 1; i > 0; i--) {
+            rSum.push_back(rSUM + nums[i]);
+            rSUM += nums[i];
+        }
+
+        reverse(rSum.begin(), rSum.end());
+
+        for (int i = 0; i < rSum.size(); i++) {
+            res.push_back(abs(rSum[i] - lSum[i]));
+        }
+
+        return res;
+    }
+};
