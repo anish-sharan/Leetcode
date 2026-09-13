@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void subsets(vector<int>& nums, vector<int> curr, int index,
+                 vector<vector<int>>& res) {
+        if (index == nums.size()) {
+            res.push_back(curr);
+            return;
+        }
+
+        // cout << " -> " << curr << " " << index << " " << endl;
+
+        subsets(nums, curr, index + 1, res);
+        curr.push_back(nums[index]);
+        subsets(nums, curr, index + 1, res);
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int index = 0;
+        vector<vector<int>> res;
+        vector<int> curr;
+
+        subsets(nums, curr, index, res);
+
+        return res;
+    }
+};
