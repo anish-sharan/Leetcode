@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int sum(vector<int> a) {
+        int sum = 0;
+        for (auto it : a) {
+            sum += it;
+        }
+        return sum;
+    }
+
+    void subsets(vector<int>& nums, vector<int> curr, int index,
+                 vector<vector<int>>& res, int target) {
+
+        if (sum(curr) > target) {
+            return;
+        }
+        if (index == nums.size()) {
+            if (sum(curr) == target) {
+
+                res.push_back(curr);
+            }
+            return;
+        }
+
+        // cout << " -> " << curr << " " << index << " " << endl;
+
+        subsets(nums, curr, index + 1, res, target);
+        curr.push_back(nums[index]);
+        subsets(nums, curr, index, res, target);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        int index = 0;
+        vector<vector<int>> res;
+        vector<int> curr;
+
+        subsets(candidates, curr, index, res, target);
+
+        return res;
+    }
+};
