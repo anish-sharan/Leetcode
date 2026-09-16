@@ -1,0 +1,53 @@
+class Solution {
+public:
+    bool isCorrect(string s, bool finalCheck) {
+        int count = 0;
+
+        for (char c : s) {
+            if (c == '(')
+                count++;
+            else
+                count--;
+
+            if (count < 0)
+                return false;
+        }
+
+        if (finalCheck)
+            return count == 0;
+
+        return true;
+    }
+
+    void backtrack(string str, int index, vector<string>& res, string curr) {
+
+        if (!isCorrect(curr, false))
+            return;
+
+        if (curr.length() == str.length()) {
+            if (isCorrect(curr, true))
+                res.push_back(curr);
+
+            return;
+        }
+
+        backtrack(str, index + 1, res, curr + '(');
+        backtrack(str, index + 1, res, curr + ')');
+    }
+
+    vector<string> generateParenthesis(int n) {
+        string curr, str = "";
+        vector<string> res;
+        int ind = 0;
+
+        for (int i = 0; i < n; i++)
+            str += "(";
+
+        for (int i = 0; i < n; i++)
+            str += ")";
+
+        backtrack(str, ind, res, curr);
+
+        return res;
+    }
+};
