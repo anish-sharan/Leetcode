@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void swap(vector<int>& arr, int a, int b) {
+        if (arr.size() > a && arr.size() > b) {
+            int t = arr[a];
+            arr[a] = arr[b];
+            arr[b] = t;
+        }
+    }
+
+    void backtrack(vector<int> nums, vector<vector<int>>& res, int l, int r) {
+        if (l == r) {
+            res.push_back(nums);
+            return;
+        }
+
+        for (int i = l; i <= r; i++) {
+            swap(nums, l, i);
+            backtrack(nums, res, l + 1, r);
+            swap(nums, l, i);
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+
+        backtrack(nums, res, 0, nums.size() - 1);
+
+        return res;
+    }
+};
