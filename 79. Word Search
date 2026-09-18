@@ -1,0 +1,55 @@
+class Solution {
+public:
+    void backtrack(vector<vector<char>>& board, int i, int j, string word,
+                   bool& res, vector<string>& curr) {
+
+        // found the complete word
+        if (curr.size() == word.length()) {
+            res = true;
+            return;
+        }
+
+        // out of bounds
+        if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size())
+            return;
+
+        // add current character
+        curr.push_back(string(1, board[i][j]));
+
+        // check whether current path matches word
+        if (curr.back()[0] != word[curr.size() - 1]) {
+            curr.pop_back();
+            return;
+        }
+
+        // mark visited
+        char temp = board[i][j];
+        board[i][j] = '#';
+
+        // 4 directions
+        backtrack(board, i + 1, j, word, res, curr);
+        backtrack(board, i - 1, j, word, res, curr);
+        backtrack(board, i, j + 1, word, res, curr);
+        backtrack(board, i, j - 1, word, res, curr);
+
+        // unmark
+        board[i][j] = temp;
+        curr.pop_back();
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        bool res = false;
+        vector<string> curr;
+
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board[0].size(); j++) {
+                backtrack(board, i, j, word, res, curr);
+
+                if (res)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+};
