@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void swap(int &a, int &b) {
+    int t = a;
+    a = b;
+    b = t;
+}
+
+    int max(int a, int b) { return a > b ? a : b; }
+    int min(int a, int b) { return a < b ? a : b; }
+    int maxProduct(vector<int>& nums) {
+        int minMax = nums[0];
+        int maxMax = nums[0];
+        int ans = nums[0];
+
+        for (int i = 1; i < nums.size(); i++) {
+            int x = nums[i];
+
+            if (x < 0)
+                swap(maxMax, minMax);
+
+            maxMax = max(x, maxMax * x);
+            minMax = min(x, minMax * x);
+
+            ans = max(ans, maxMax);
+        }
+        return ans;
+    }
+};
